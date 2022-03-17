@@ -6,13 +6,20 @@ class Router
 {
     public array $getRoutes = [];
     public array $postRoutes = [];
+    public Database $db;
+
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     public function get($url, $fn)
     {
         $this->getRoutes[$url] = $fn;
     }
 
-    
+
     public function post($url, $fn)
     {
         $this->postRoutes[$url] = $fn;
@@ -31,9 +38,21 @@ class Router
         }
 
         if ($fn) {
-            call_user_func($fn);
+            call_user_func($fn, $this);
         } else {
             echo "404 - Page not found!";
         }
+    }
+
+
+    public function renderView($view, $params = [])
+    {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+        ob_start();
+        include_once __DIR__."/views/$view.php";
+        $content = ob_get_clean();
+        include_once __DIR__."/views/_layouts.php";
     }
 }

@@ -2,11 +2,16 @@
 
 namespace app\controllers;
 
+use app\Router;
+
 class ProductController
 {
-    public function index ()
+    public function index (Router $router)
     {
-        echo "index Page";
+        $products = $router->db->getProducts();
+        $router->renderView("products/index", [
+            'products' => $products
+        ]);
     }
 
 
@@ -21,7 +26,7 @@ class ProductController
         echo "update Page"; 
     }
 
-    
+
     public function delete ()
     {
         echo "delete Page";
