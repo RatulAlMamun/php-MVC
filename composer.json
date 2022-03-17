@@ -1,0 +1,15 @@
+{
+    "name": "ratul/php-mvc",
+    "authors": [
+        {
+            "name": "RatulAlMamun",
+            "email": "ratulalmamun23@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
+}
