@@ -8,9 +8,11 @@ class ProductController
 {
     public function index (Router $router)
     {
-        $products = $router->db->getProducts();
+        $search = $_GET["search"] ?? "";
+        $products = $router->db->getProducts($search);
         $router->renderView("products/index", [
-            'products' => $products
+            "products" => $products,
+            "search" => $search
         ]);
     }
 
