@@ -1,1 +1,3 @@
-<h1>Update Product.</h1>
+<h1>Update product</h1>
+
+<?php include "_form.php"; ?>
